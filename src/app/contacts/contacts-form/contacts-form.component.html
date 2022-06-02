@@ -1,0 +1,44 @@
+<form novalidate #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="contactId" [value]="service.formData.contactId"/>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="inputName">Name</label>
+            <input class="form-control" id="inputName" placeholder="Name" name="name" #name="ngModel" [(ngModel)]="service.formData.name" required
+            [class.invalid]="name.invalid && name.touched">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputSurname">Surname</label>
+            <input class="form-control" id="inputSurname" placeholder="Surname" name="surname" #surname="ngModel" [(ngModel)]="service.formData.surname" required
+            [class.invalid]="surname.invalid && surname.touched">
+        </div>
+    </div>
+    <div class="form-group">
+        <label>E-mail address</label>
+        <input type="email" class="form-control" placeholder="name@example.com" name="email" #email="ngModel" [(ngModel)]="service.formData.email" required
+        [class.invalid]="email.invalid && email.touched"
+        [email]="true">
+    </div>
+    <div class="form-group">
+        <label>Phone number</label>
+        <input class="form-control" placeholder="Phone number" name="phone" #phone="ngModel" [(ngModel)]="service.formData.phone" required maxlength="15" minlength="7"
+        [class.invalid]="phone.invalid && phone.touched">
+    </div>
+    <div class="form-group">
+        <label>Date of birth</label>
+        <input type="date" class="form-control" placeholder="date of birth" name="birthdate" #birthdate="ngModel" [(ngModel)]="service.formData.birthdate" required>
+    </div>
+    <div class="form-group">
+        <label>Category</label>
+        <br>
+        <select class="form-select" aria-label="Default select example" #categoryId="ngModel" [(ngModel)]="service.formData.categoryId" required>
+            <option value="4">Służbowy</option>
+            <option value="9">Prywatny</option>
+            <option value="10">Inny</option>
+          </select>
+    </div>
+    <div class="form-group p-1">
+        <div class="d-grid gap-3">
+            <button class="btn btn-outline-primary btn-lg btn-block" type="submit" [disabled]="form.invalid">Submit</button>
+        </div>
+    </div>
+</form>
